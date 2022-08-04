@@ -12,8 +12,10 @@
 // License for the specific language governing permissions and limitations
 // under the License.
 
-#ifndef _CURSE_H
-	#define _CURSE_H
+#ifndef _CURSE_IO_H
+	#define _CURSE_IO_H
 
-	void curse_init ();
+	char *curse_read_file (char*);
+	char *curse_error (char*);
+
 #endif

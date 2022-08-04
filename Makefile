@@ -14,11 +14,12 @@
 
 TARGET = curse
 
-SOURCES = src/main.c
+SOURCES = $(wildcard src/*.c)
 OBJECTS = $(SOURCES:.c=.o)
 
 CFLAGS = \
-	-Iinclude/
+	-Iinclude/ \
+	-g
 
 ifeq ($(CURSE_USE_WAYLAND),)
 	SOURCES += $(wildcard src/x11/*.c)

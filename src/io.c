@@ -1,4 +1,4 @@
-// Copyright 2022 Xin Yue
+// Copyright 2022 Xin Yue 
 
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not
 // use this file except in compliance with the License. You may obtain a copy
@@ -12,25 +12,39 @@
 // License for the specific language governing permissions and limitations
 // under the License.
 
-#include <curse/curse.h>
-#include <curse/interpreter.h>
 #include <curse/io.h>
 #include <stdio.h>
 #include <stdlib.h>
 
-int
-main (int argc, char *argv[])
-{
-	if (argc < 2)
-		curse_error ("usage: curse [filename]");
+char*
+curse_read_file (char* filename) {
+	FILE *fp;
 
-	curse_init ();
-
-	Interpreter* interpreter = curse_interpreter_new (curse_read_file (argv[1]));
-
-	printf ("%s\n", interpreter->code);
-
-	curse_interpreter_free (interpreter);
+	fp = fopen (filename, "rb");
+	if (!fp)
+		curse_error ("file could not found");
 	
-	return 0;
+	fseek (fp, 0L, SEEK_END);
+	long size = ftell (fp);
+	rewind (fp);
+
+	char *buffer = (char*)malloc (sizeof(char) * (size + 1));
+	if (!buffer)
+		curse_error ("memory allocation failed");
+
+	if (fread (buffer, size, 1, fp) != 1) {
+		free (buffer);
+		fclose (fp);
+		curse_error ("file read failed");
+	}
+
+	fclose (fp);
+
+	return buffer;
+}
+
+char*
+curse_error (char *err) {
+	fprintf (stderr, "error: %s\n", err);
+	exit (1);
 }
