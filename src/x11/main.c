@@ -15,9 +15,19 @@
 #include <curse/curse.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <X11/Xlib.h>
+
+static Display *dpy;
+static Window root_window;
 
 void
-curse_init (void)
-{
-	printf ("hello from x11.\n");
+curse_init (void) {
+	dpy = XOpenDisplay (0);
+	root_window = XRootWindow (dpy, XDefaultScreen (dpy));
+}
+
+void
+curse_move_cursor (int x, int y) {
+	XWarpPointer(dpy, None, root_window, 0, 0, 0, 0, x, y);
+	XFlush(dpy);	
 }

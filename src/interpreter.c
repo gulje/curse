@@ -12,8 +12,11 @@
 // License for the specific language governing permissions and limitations
 // under the License.
 
+#include <curse/curse.h>
 #include <curse/interpreter.h>
+#include <curse/io.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 // code MUST BE ALLOCATED by the caller
 Interpreter*
@@ -24,8 +27,8 @@ curse_interpreter_new (char *code) {
 		curse_error ("memory allocation failed");
 
 	interpreter->code = code;
-	interpreter->current = 0;
 	interpreter->pos = 0;
+	interpreter->current = interpreter->code[interpreter->pos];
 
 	return interpreter;
 }
@@ -35,4 +38,41 @@ void
 curse_interpreter_free (Interpreter *interpreter) {
 	free(interpreter->code);
 	free(interpreter);
+}
+
+void
+curse_interpreter_run (Interpreter *interpreter) {
+	while (interpreter->current != EOF) {
+		switch (interpreter->current) {
+			case CURSE_MOVE_CURSOR:
+				printf ("got MOVE_CURSOR\n");
+				curse_interpreter_advance (interpreter);
+				unsigned int x = curse_interpreter_word (interpreter);
+				unsigned int y = curse_interpreter_word (interpreter);
+
+				curse_move_cursor (x, y);
+				break;
+			default:
+				curse_interpreter_advance (interpreter);
+				break;
+		}
+	}
+}
+
+void
+curse_interpreter_advance (Interpreter *interpreter) {
+	interpreter->current = interpreter->code[++interpreter->pos];
+}
+
+// This code is written for big-endian sorted data.
+unsigned int
+curse_interpreter_word (Interpreter *interpreter) {
+	unsigned short n = interpreter->current << 8;
+	curse_interpreter_advance (interpreter);
+
+	n |= interpreter->current;
+
+	curse_interpreter_advance (interpreter);
+
+	return n;
 }

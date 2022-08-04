@@ -15,5 +15,8 @@
 #ifndef _CURSE_H
 	#define _CURSE_H
 
+	#define CURSE_MOVE_CURSOR 0x00
+
 	void curse_init ();
+	void curse_move_cursor (int, int);
 #endif

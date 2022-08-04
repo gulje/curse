@@ -28,7 +28,7 @@ main (int argc, char *argv[])
 
 	Interpreter* interpreter = curse_interpreter_new (curse_read_file (argv[1]));
 
-	printf ("%s\n", interpreter->code);
+	curse_interpreter_run (interpreter);
 
 	curse_interpreter_free (interpreter);
 	

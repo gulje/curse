@@ -16,6 +16,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// OUTPUT IS NOT A NULL-TERMINATED STRING!
+// DO NOT USE WITH ANY STANDARD LIBRARY METHOD!
 char*
 curse_read_file (char* filename) {
 	FILE *fp;
@@ -38,6 +40,7 @@ curse_read_file (char* filename) {
 		curse_error ("file read failed");
 	}
 
+	buffer[size] = EOF;
 	fclose (fp);
 
 	return buffer;

@@ -11,7 +11,6 @@ curse usually runs via a `*.curse` file.
 ### `0x00` MOVE_CURSOR
 | Argument                                                                   | Length  |
 |----------------------------------------------------------------------------|---------|
-| `duration` (in how many miliseconds the mouse will move `x`, `y` position) | 2 bytes |
 | `x`                                                                        | 2 bytes |
 | `y`                                                                        | 2 bytes |
 
