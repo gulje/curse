@@ -1,5 +1,5 @@
 # curse
-curse is a tool that allows you to control the mouse cursor.
+curse is a tool that allows you to control the mouse cursor on most of Linux systems.
 It currently only works on systems using X11.
 
 ## How does curse work?
