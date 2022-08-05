@@ -23,15 +23,15 @@
 		char current;
 		uint32_t pos;
 		char *code;
-	} __attribute__ ((packed)) Interpreter;
+	} __attribute__((packed)) Interpreter;
 
 	// allocation
-	Interpreter *curse_interpreter_new (char*);
-	void curse_interpreter_free (Interpreter*);
+	Interpreter *curse_interpreter_new(char*);
+	void curse_interpreter_free(Interpreter*);
 
 	// methods
-	void curse_interpreter_run (Interpreter*);
-	void curse_interpreter_advance (Interpreter*);
-	unsigned int curse_interpreter_word (Interpreter *interpreter);
+	void curse_interpreter_run(Interpreter*);
+	void curse_interpreter_advance(Interpreter*);
+	unsigned int curse_interpreter_word(Interpreter*);
 
 #endif

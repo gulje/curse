@@ -19,9 +19,9 @@
 #include <stdio.h>
 
 // code MUST BE ALLOCATED by the caller
-Interpreter*
-curse_interpreter_new (char *code) {
-	Interpreter *interpreter = (Interpreter*)malloc(sizeof(Interpreter));
+Interpreter* curse_interpreter_new (char *code)
+{
+	Interpreter *interpreter = (Interpreter*)malloc (sizeof(Interpreter));
 
 	if (!interpreter)
 		curse_error ("memory allocation failed");
@@ -34,18 +34,17 @@ curse_interpreter_new (char *code) {
 }
 
 // code MUST NOT BE DEALLOCATED by the caller
-void
-curse_interpreter_free (Interpreter *interpreter) {
-	free(interpreter->code);
-	free(interpreter);
+void curse_interpreter_free (Interpreter *interpreter)
+{
+	free (interpreter->code);
+	free (interpreter);
 }
 
-void
-curse_interpreter_run (Interpreter *interpreter) {
+void curse_interpreter_run (Interpreter *interpreter)
+{
 	while (interpreter->current != EOF) {
 		switch (interpreter->current) {
 			case CURSE_MOVE_CURSOR:
-				printf ("got MOVE_CURSOR\n");
 				curse_interpreter_advance (interpreter);
 				unsigned int x = curse_interpreter_word (interpreter);
 				unsigned int y = curse_interpreter_word (interpreter);
@@ -59,14 +58,14 @@ curse_interpreter_run (Interpreter *interpreter) {
 	}
 }
 
-void
-curse_interpreter_advance (Interpreter *interpreter) {
+void curse_interpreter_advance (Interpreter *interpreter)
+{
 	interpreter->current = interpreter->code[++interpreter->pos];
 }
 
 // This code is written for big-endian sorted data.
-unsigned int
-curse_interpreter_word (Interpreter *interpreter) {
+unsigned int curse_interpreter_word (Interpreter *interpreter)
+{
 	unsigned short n = interpreter->current << 8;
 	curse_interpreter_advance (interpreter);
 

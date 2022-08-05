@@ -18,8 +18,7 @@
 
 // OUTPUT IS NOT A NULL-TERMINATED STRING!
 // DO NOT USE WITH ANY STANDARD LIBRARY METHOD!
-char*
-curse_read_file (char* filename) {
+char *curse_read_file (char *filename) {
 	FILE *fp;
 
 	fp = fopen (filename, "rb");
@@ -46,8 +45,7 @@ curse_read_file (char* filename) {
 	return buffer;
 }
 
-char*
-curse_error (char *err) {
+char *curse_error (char *err) {
 	fprintf (stderr, "error: %s\n", err);
 	exit (1);
 }

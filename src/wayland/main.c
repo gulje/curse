@@ -20,14 +20,12 @@
 	printf ("libcurse-wl#%s is not implemented.\n", # x); \
 	exit (1);
 
-void
-wl_curse_init (void)
+void wl_curse_init (void)
 {
 	NOT_IMPLEMENTED(wl_curse_init);
 }
 
-void
-wl_curse_move_cursor (int x, int y)
+void wl_curse_move_cursor (int x, int y)
 {
 	NOT_IMPLEMENTED(wl_curse_move_cursor);
 }

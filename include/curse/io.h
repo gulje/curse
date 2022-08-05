@@ -15,7 +15,7 @@
 #ifndef _CURSE_IO_H
 	#define _CURSE_IO_H
 
-	char *curse_read_file (char*);
-	char *curse_error (char*);
+	char *curse_read_file(char*);
+	char *curse_error(char*);
 
 #endif

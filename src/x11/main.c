@@ -20,16 +20,14 @@
 static Display *dpy;
 static Window root_window;
 
-void
-x11_curse_init (void)
+void x11_curse_init (void)
 {
 	dpy = XOpenDisplay (0);
 	root_window = XRootWindow (dpy, XDefaultScreen (dpy));
 }
 
-void
-x11_curse_move_cursor (int x, int y)
+void x11_curse_move_cursor (int x, int y)
 {
-	XWarpPointer(dpy, None, root_window, 0, 0, 0, 0, x, y);
-	XFlush(dpy);	
+	XWarpPointer (dpy, None, root_window, 0, 0, 0, 0, x, y);
+	XFlush (dpy);	
 }
