@@ -12,13 +12,22 @@
 // License for the specific language governing permissions and limitations
 // under the License.
 
-#include <curse/curse.h>
+#include <curse/wayland.h>
 #include <stdio.h>
 #include <stdlib.h>
 
-void
-curse_init (void)
-{
-	printf ("we do not have support for wayland, sorry.\n");
+#define NOT_IMPLEMENTED(x) \
+	printf ("libcurse-wl#%s is not implemented.\n", # x); \
 	exit (1);
+
+void
+wl_curse_init (void)
+{
+	NOT_IMPLEMENTED(wl_curse_init);
+}
+
+void
+wl_curse_move_cursor (int x, int y)
+{
+	NOT_IMPLEMENTED(wl_curse_move_cursor);
 }

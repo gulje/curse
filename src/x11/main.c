@@ -12,7 +12,7 @@
 // License for the specific language governing permissions and limitations
 // under the License.
 
-#include <curse/curse.h>
+#include <curse/x11.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <X11/Xlib.h>
@@ -21,13 +21,15 @@ static Display *dpy;
 static Window root_window;
 
 void
-curse_init (void) {
+x11_curse_init (void)
+{
 	dpy = XOpenDisplay (0);
 	root_window = XRootWindow (dpy, XDefaultScreen (dpy));
 }
 
 void
-curse_move_cursor (int x, int y) {
+x11_curse_move_cursor (int x, int y)
+{
 	XWarpPointer(dpy, None, root_window, 0, 0, 0, 0, x, y);
 	XFlush(dpy);	
 }

@@ -14,9 +14,15 @@
 
 #ifndef _CURSE_H
 	#define _CURSE_H
-
 	#define CURSE_MOVE_CURSOR 0x00
 
-	void curse_init ();
-	void curse_move_cursor (int, int);
+	#ifdef CURSE_X11
+		#include <curse/x11.h>
+		#define curse_init x11_curse_init
+		#define curse_move_cursor x11_curse_move_cursor
+	#else
+		#include <curse/wayland.h>
+		#define curse_init wl_curse_init
+		#define curse_move_cursor wl_curse_move_cursor
+	#endif
 #endif
